@@ -33,101 +33,63 @@ export default function Signup(){
             body
         );
 
-        promise.then(() => {
+        promise.then((re) => {
+            console.log(re.data);
             navigate("/");
         });
         promise.catch(() => {
             alert("Erro em fazer cadastro");
             setLoading(false);
         });
-
-        return (
-            <Div>
-                <Image className="logo" alt="TrackIt logo" src={logo} />
-                <Form>
-                    <input 
-                        className="pale" 
-                        type="email"
-                        id="email"
-                        placeholder="email"
-                        value=""
-                    />
-                    <input 
-                        className="pale"
-                        type="password"
-                        id="password"
-                        placeholder="senha"
-                        value=""
-                    />
-                    <input 
-                        className="pale" 
-                        type="text"
-                        id="name"
-                        placeholder="nome"
-                        value=""
-                        required
-                    />
-                    <input 
-                        className="pale"
-                        type="url"
-                        id="url"
-                        placeholder="foto"
-                        value=""
-                    />
-                    <button className="pale">
-                        <Loaderspinner />
-                    </button>
-                </Form>
-                <Link to={"/"}>
-                    <p>Já tem uma conta? Faça login!</p>
-                </Link>
-            </Div>
-        );
-        
-    }else{
-        return (
-            <Div>
-                <Image className="logo" alt="TrackIt logo" src={logo} />
-                <Form onSubmit={signUp}>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="senha"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="nome"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="url"
-                        id="url"
-                        placeholder="foto"
-                        value={photo}
-                        onChange={(e) => setPhoto(e.target.value)}
-                    />
-                    <button type="submit"> Cadastrar</button>
-                </Form>
-                <Link to={"/"}>
-                    <p>Já tem uma conta? Faça login!</p>
-                </Link>
-            </Div>
-        );
     }
+
+    return (
+        <Div>
+            <Image className="logo" alt="TrackIt logo" src={logo} />
+            <Form onSubmit={loading ? () => {} : signUp}>
+                <input
+                    className={loading ? "pale" : ""}
+                    type="email"
+                    id="email"
+                    placeholder="email"
+                    value={loading ? "" : email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <input
+                    className={loading ? "pale" : ""}
+                    type="password"
+                    id="password"
+                    placeholder="senha"
+                    value={loading ? "" : password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <input
+                    className={loading ? "pale" : ""}
+                    type="text"
+                    id="name"
+                    placeholder="nome"
+                    value={loading ? "" : name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+                <input
+                    className={loading ? "pale" : ""}
+                    type="url"
+                    id="url"
+                    placeholder="foto"
+                    value={loading ? "" : photo}
+                    onChange={(e) => setPhoto(e.target.value)}
+                    required
+                />
+                <button className={loading ? "pale" : ""} type="submit"> {loading ? <Loaderspinner /> : "Cadastrar"}</button>
+            </Form>
+            <Link to={"/"}>
+                <p>Já tem uma conta? Faça login!</p>
+            </Link>
+        </Div>
+    );
 }
 
 
