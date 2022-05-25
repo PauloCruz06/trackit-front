@@ -45,44 +45,46 @@ export default function Signup(){
     return (
         <Div>
             <Image className="logo" alt="TrackIt logo" src={logo} />
-            <Form onSubmit={loading ? () => {} : signUp}>
+            <Form onSubmit={loading ? null : signUp}>
                 <input
                     className={loading ? "pale" : ""}
                     type="email"
-                    id="email"
+                    id={loading ? null : "email"}
                     placeholder="email"
-                    value={loading ? "" : email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    onChange={loading ? null : (e) => setEmail(e.target.value)}
                     required
                 />
                 <input
                     className={loading ? "pale" : ""}
                     type="password"
-                    id="password"
+                    id={loading ? null : "password"}
                     placeholder="senha"
-                    value={loading ? "" : password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    onChange={loading ? null : (e) => setPassword(e.target.value)}
                     required
                 />
                 <input
                     className={loading ? "pale" : ""}
                     type="text"
-                    id="name"
+                    id={loading ? null : "name"}
                     placeholder="nome"
-                    value={loading ? "" : name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    onChange={loading ? null : (e) => setName(e.target.value)}
                     required
                 />
                 <input
                     className={loading ? "pale" : ""}
                     type="url"
-                    id="url"
+                    id={loading ? null : "url"}
                     placeholder="foto"
-                    value={loading ? "" : photo}
-                    onChange={(e) => setPhoto(e.target.value)}
+                    value={photo}
+                    onChange={loading ? null : (e) => setPhoto(e.target.value)}
                     required
                 />
-                <button className={loading ? "pale" : ""} type="submit"> {loading ? <Loaderspinner /> : "Cadastrar"}</button>
+                <button className={loading ? "pale" : ""} type={loading ? null : "submit"}>
+                    {loading ? <Loaderspinner /> : "Cadastrar"}
+                </button>
             </Form>
             <Link to={"/"}>
                 <p>Já tem uma conta? Faça login!</p>

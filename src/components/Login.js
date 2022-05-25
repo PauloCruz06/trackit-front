@@ -1,39 +1,72 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import UserContext from "../contexts/UserContext";
 
 import logo from "./assets/images/logo.png";
+import { Loaderspinner } from "./Loaderspinner";
 
-import { Div, Image, Form} from "./Stylelogin";
+import { Div, Image, Form } from "./Stylelogin";
 
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading]= useState(false);
-    const { token, setToken } = useContext(UserContext);
+    const { setToken } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    function sub(e){
+        e.preventDefault();
+        setLoading(true);
+    }
+
+    if(loading){
+        const body = {
+            email: email,
+            password: password
+        };
+
+        const promise = axios.post(
+            "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
+            body
+        );
+
+        promise.then((re) => {
+            navigate("/hoje",{state:{...re.data}});
+            setToken(re.data.token);
+        });
+        promise.catch(() => {
+            alert("Não foi possível efetuar o login");
+            setLoading(false);
+        });
+    }
 
     return(
         <Div>
             <Image className="logo" alt="TrackIt logo" src={logo} />
-            <Form>
-                <input 
+            <Form onSubmit={loading ? null : sub}>
+                <input
+                    className={loading ? "pale" : ""}
                     type="email"
-                    id="email"
+                    id={loading ? null : "email"}
                     placeholder="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={loading ? null : (e) => setEmail(e.target.value)}
                     required
                 />
                 <input
+                    className={loading ? "pale" : ""}
                     type="password"
-                    id="password"
+                    id={loading ? null : "password"}
                     placeholder="senha"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={loading ? null : (e) => setPassword(e.target.value)}
                     required
                 />
-                <button>Entrar</button>
+                <button className={loading ? "pale" : ""} type={loading ? null : "submit"}>
+                    {loading ? <Loaderspinner /> : "Entrar"}
+                </button>
             </Form>
             <Link to={"/cadastro"}>
                 <p>Não tem uma conta? Cadastre-se!</p>
