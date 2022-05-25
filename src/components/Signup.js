@@ -12,11 +12,6 @@ export default function Signup(){
     const [name, setName] = useState("");
     const [photo, setPhoto] = useState("");
 
-    /*function signUp(e){
-        e.preventDefaut();
-
-    }*/
-
     return (
         <Div>
             <Image className="logo" alt="TrackIt logo" src={logo} />
@@ -60,7 +55,7 @@ export default function Signup(){
         </Div>
     );
 }
-
+    
 
 const Div = styled.div`
     width: 100%;
