@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import logo from "./assets/images/logo.png";
@@ -11,51 +11,122 @@ export default function Signup(){
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [photo, setPhoto] = useState("");
+    const [loading, setLoading]= useState(false);
+    const navigate = useNavigate();
 
-    return (
-        <Div>
-            <Image className="logo" alt="TrackIt logo" src={logo} />
-            <Form>
-                <input 
-                    type="email"
-                    id="email"
-                    placeholder="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="senha"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <input 
-                    type="text"
-                    id="name"
-                    placeholder="nome"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
-                <input
-                    type="url"
-                    id="url"
-                    placeholder="foto"
-                    value={photo}
-                    onChange={(e) => setPhoto(e.target.value)}
-                />
-                <button>Cadastrar</button>
-            </Form>
-            <Link to={"/"}>
-                <p>Já tem uma conta? Faça login!</p>
-            </Link>
-        </Div>
-    );
+    function signUp(e){
+        e.preventDefault();
+        setLoading(true);
+    }
+
+    if(loading){
+        const body = {
+            email: email,
+            name: name,
+            image: photo,
+            password: password
+        };
+
+        const promise = axios.post(
+            "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up",
+            body
+        );
+
+        promise.then(() => {
+            navigate("/");
+        });
+        promise.catch(() => {
+            alert("Erro em fazer cadastro");
+            setLoading(false);
+        });
+
+        return (
+            <Div>
+                <Image className="logo" alt="TrackIt logo" src={logo} />
+                <Form>
+                    <input 
+                        className="pale" 
+                        type="email"
+                        id="email"
+                        placeholder="email"
+                        value=""
+                    />
+                    <input 
+                        className="pale"
+                        type="password"
+                        id="password"
+                        placeholder="senha"
+                        value=""
+                    />
+                    <input 
+                        className="pale" 
+                        type="text"
+                        id="name"
+                        placeholder="nome"
+                        value=""
+                        required
+                    />
+                    <input 
+                        className="pale"
+                        type="url"
+                        id="url"
+                        placeholder="foto"
+                        value=""
+                    />
+                    <button className="pale">Cadastrar</button>
+                </Form>
+                <Link to={"/"}>
+                    <p>Já tem uma conta? Faça login!</p>
+                </Link>
+            </Div>
+        );
+        
+    }else{
+        return (
+            <Div>
+                <Image className="logo" alt="TrackIt logo" src={logo} />
+                <Form onSubmit={signUp}>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="senha"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="nome"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="url"
+                        id="url"
+                        placeholder="foto"
+                        value={photo}
+                        onChange={(e) => setPhoto(e.target.value)}
+                    />
+                    <button type="submit">Cadastrar</button>
+                </Form>
+                <Link to={"/"}>
+                    <p>Já tem uma conta? Faça login!</p>
+                </Link>
+            </Div>
+        );
+    }
 }
-    
+
 
 const Div = styled.div`
     width: 100%;
@@ -85,6 +156,9 @@ const Form = styled.form`
     height: auto;
     display: flex;
     flex-direction: column;
+    .pale{
+        filter: contrast(75%);
+    }
     > input{
         width: 303px;
         height: 45px;

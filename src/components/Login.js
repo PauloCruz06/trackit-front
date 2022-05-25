@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+
+import UserContext from "../contexts/UserContext";
 
 import logo from "./assets/images/logo.png";
 
@@ -8,7 +10,7 @@ import styled from "styled-components";
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
+    const { token, setToken } = useContext(UserContext);
 
     return(
         <Div>
