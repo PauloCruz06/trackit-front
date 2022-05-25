@@ -34,7 +34,6 @@ export default function Signup(){
         );
 
         promise.then((re) => {
-            console.log(re.data);
             navigate("/");
         });
         promise.catch(() => {
