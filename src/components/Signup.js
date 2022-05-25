@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import logo from "./assets/images/logo.png";
+import { Loaderspinner } from "./Loaderspinner";
 
 import styled from "styled-components";
 
@@ -73,7 +74,9 @@ export default function Signup(){
                         placeholder="foto"
                         value=""
                     />
-                    <button className="pale">Cadastrar</button>
+                    <button className="pale">
+                        <Loaderspinner />
+                    </button>
                 </Form>
                 <Link to={"/"}>
                     <p>Já tem uma conta? Faça login!</p>
@@ -117,7 +120,7 @@ export default function Signup(){
                         value={photo}
                         onChange={(e) => setPhoto(e.target.value)}
                     />
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit"> Cadastrar</button>
                 </Form>
                 <Link to={"/"}>
                     <p>Já tem uma conta? Faça login!</p>
@@ -178,6 +181,9 @@ const Form = styled.form`
     > button{
         width: 303px;
         height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 5px;
         border: none;
         background-color: #52B6FF;
