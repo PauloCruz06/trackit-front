@@ -16,6 +16,7 @@ export default function Login(){
             <Form>
                 <input 
                     type="email"
+                    id="email"
                     placeholder="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -23,6 +24,7 @@ export default function Login(){
                 />
                 <input
                     type="password"
+                    id="password"
                     placeholder="senha"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
