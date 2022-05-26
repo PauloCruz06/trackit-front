@@ -16,6 +16,13 @@ export default function Login(){
     const { setUserdata } = useContext(UserContext);
     const navigate = useNavigate();
 
+    const userlogin = localStorage.getItem('data');
+
+    if(userlogin !== null){
+        navigate("/hoje");
+        setUserdata(JSON.parse(userlogin));
+    }
+    
     function sub(e){
         e.preventDefault();
         setLoading(true);
@@ -33,6 +40,9 @@ export default function Login(){
         );
 
         promise.then((re) => {
+            const data = { ...re.data };
+            const datastring = JSON.stringify(data);
+            localStorage.setItem('data', datastring);
             navigate("/hoje");
             setUserdata(re.data);
         });

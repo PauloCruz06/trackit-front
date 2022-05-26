@@ -3,7 +3,12 @@ import { useContext } from "react";
 import UserContext from "../contexts/UserContext";
 
 export default function Todayshabits(){
-    const { userdata } = useContext(UserContext);
+    const { userdata, setUserdata } = useContext(UserContext);
+
+    if(userdata === ""){
+        const userlogin = localStorage.getItem('data');
+        setUserdata(JSON.parse(userlogin));
+    }
 
     return(
         <>
