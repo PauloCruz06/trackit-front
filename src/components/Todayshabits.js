@@ -1,20 +1,16 @@
-import { useContext } from "react";
+import Top from "./Top";
 
-import UserContext from "../contexts/UserContext";
+import styled from "styled-components";
 
 export default function Todayshabits(){
-    const { userdata, setUserdata } = useContext(UserContext);
-
-    if(userdata === ""){
-        const userlogin = localStorage.getItem('data');
-        setUserdata(JSON.parse(userlogin));
-    }
-
     return(
         <>
-            <p>Eu sou today's habits</p>
-            <img alt="login" src={userdata.image}/>
-            <p>{userdata.name}</p>
+            <Top />
+            <Tag>Eu sou today's habits</Tag>
         </>
     );
 }
+
+const Tag = styled.p`
+    margin-top: 100px;
+`
