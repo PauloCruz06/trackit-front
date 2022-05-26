@@ -26,7 +26,7 @@ const Div = styled.div`
     height: 70px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: #126BA5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
@@ -37,12 +37,12 @@ const Div = styled.div`
 const Imagelogo = styled.img`
     width: 90px;
     height: 30px;
-    margin-right: 85px;
+    margin-left: 20px;
 `
 
 const Imageuser = styled.img`
     width: 51px;
     height: 51px;
     border-radius: 98.5px;
-    margin-left: 85px;
+    margin-right: 20px;
 `

@@ -19,8 +19,8 @@ export default function Login(){
     const userlogin = localStorage.getItem('data');
 
     if(userlogin !== null){
-        navigate("/hoje");
         setUserdata(JSON.parse(userlogin));
+        navigate("/hoje");
     }
     
     function sub(e){
