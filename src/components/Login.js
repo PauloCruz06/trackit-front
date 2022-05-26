@@ -13,7 +13,7 @@ export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading]= useState(false);
-    const { setToken } = useContext(UserContext);
+    const { setUserdata } = useContext(UserContext);
     const navigate = useNavigate();
 
     function sub(e){
@@ -33,8 +33,8 @@ export default function Login(){
         );
 
         promise.then((re) => {
-            navigate("/hoje",{state:{...re.data}});
-            setToken(re.data.token);
+            navigate("/hoje");
+            setUserdata(re.data);
         });
         promise.catch(() => {
             alert("Não foi possível efetuar o login");

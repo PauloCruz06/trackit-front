@@ -8,10 +8,10 @@ import Signup from "./Signup";
 import Todayshabits from "./Todayshabits";
 
 export default function App(){
-    const[token, setToken] = useState("");
+    const[userdata, setUserdata] = useState("");
 
     return (
-        <UserContext.Provider value={{ token, setToken }}>
+        <UserContext.Provider value={{ userdata, setUserdata }}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login />} />

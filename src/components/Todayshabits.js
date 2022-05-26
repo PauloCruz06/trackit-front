@@ -1,13 +1,15 @@
-import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+
+import UserContext from "../contexts/UserContext";
 
 export default function Todayshabits(){
-    const location = useLocation();
+    const { userdata } = useContext(UserContext);
 
     return(
         <>
             <p>Eu sou today's habits</p>
-            <img alt="login" src={location.state.image}/>
-            <p>{location.state.name}</p>
+            <img alt="login" src={userdata.image}/>
+            <p>{userdata.name}</p>
         </>
     );
 }
