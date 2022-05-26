@@ -28,7 +28,7 @@ export default function Menu(){
                         background
                         backgroundPadding={6}
                         styles={buildStyles({
-                            backgroundColor: "#3e98c7",
+                            backgroundColor: "#52B6FF",
                             textColor: "#fff",
                             pathColor: "#fff",
                             trailColor: "transparent"
@@ -50,6 +50,7 @@ const Div = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     background-color: #FFFFFF;
     position: fixed;
     bottom: 0px;
@@ -78,7 +79,7 @@ const Div = styled.div`
         height: 91px;
         position: absolute;
         left: 0px;
-        top: -32px;
+        top: -21px;
     }
     p{
         font-family: 'Lexend Deca', sans-serif;
@@ -87,7 +88,7 @@ const Div = styled.div`
         color: #FFFFFF;
         position: absolute;
         left: 26px;
-        bottom: 70px;
+        bottom: 57px;
         z-index: 2;
     }
 
