@@ -11,11 +11,13 @@ export const Screen = styled.div`
 
 export const Div = styled.div`
     width: 100%;
+    background-color: #F2F2F2;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 100px;
+    padding-bottom: 100px;
     h3{
         font-weight: 400;
         font-size: 23px;
@@ -25,7 +27,7 @@ export const Div = styled.div`
     p{
         font-weight: 400;
         font-size: 18px;
-        margin-left: 15px;
+        margin: 0px 15px 0px 15px;
         color: #666666;
     }
 `
