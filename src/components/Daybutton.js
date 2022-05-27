@@ -32,7 +32,7 @@ export default function Daybutton({ day, loading, habitdays, id }){
             setColor("#FFFFFF");
             setBackcolor("#CFCFCF");
             habitdays("#FFFFFF", id);
-        }else if(backcolor === "#CFCFCF"){
+        }else {
             setColor("#DBDBDB");
             setBackcolor("#FFFFFF");
             habitdays("#DBDBDB", id);
