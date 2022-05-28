@@ -31,3 +31,12 @@ export const Div = styled.div`
         color: #666666;
     }
 `
+
+export const Buttons = styled.div`
+    width: 92%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+`

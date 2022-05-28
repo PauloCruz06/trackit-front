@@ -33,6 +33,7 @@ const Div = styled.div`
     position: fixed;
     top: 0px;
     left: 0px;
+    z-index: 1;
 `
 const Imagelogo = styled.img`
     width: 90px;

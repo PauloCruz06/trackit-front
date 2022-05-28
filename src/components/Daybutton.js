@@ -46,7 +46,7 @@ export default function Daybutton({ day, loading, habitdays, id }){
     );
 }
 
-const Button = styled.button`
+export const Button = styled.button`
     width: 30px;
     height: 30px;
     background-color: ${props => props.backcolor};

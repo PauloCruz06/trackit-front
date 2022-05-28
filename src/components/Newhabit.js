@@ -4,6 +4,7 @@ import Daybutton from "./Daybutton";
 import { Loaderspinner } from "./Loaderspinner";
 
 import UserContext from "../contexts/UserContext";
+import { Buttons } from "./Stylehabits";
 
 import styled from "styled-components";
 import axios from "axios";
@@ -131,15 +132,6 @@ const Form = styled.form`
             color: #DBDBDB;
         }
     }
-`
-
-const Buttons = styled.div`
-    width: 92%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-bottom: 30px;
 `
 const Submits = styled.div`
     width: 92%;

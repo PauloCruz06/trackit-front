@@ -1,7 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 
-import Newhabit from "./Newhabit";
+import Habitlist from "./Habitlist";
 import Menu from "./Menu";
+import Newhabit from "./Newhabit";
 import Top from "./Top";
 
 import UserContext from "../contexts/UserContext";
@@ -27,8 +28,31 @@ export default function Habits(){
         );
         promise.then((re) => (
             setHablist([...re.data])
-        ))
+        ));
     }, []);
+
+    function deletehabit(index){
+        if(window.confirm("Deseja excluir o hábito?")){
+            const config = {
+                headers:{
+                    Authorization: `Bearer ${userdata.token}`
+                }
+            }
+            const promise = axios.delete(
+                `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${index}`,
+                config
+            );
+            promise.then(() => {
+                const promise = axios.get(
+                    "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
+                    config
+                );
+                promise.then((re) => (
+                    setHablist([...re.data])
+                ));
+            });
+        }
+    }
 
     return(
         <Screen>
@@ -48,7 +72,7 @@ export default function Habits(){
                     </p>
                     :
                     hablist.map((hab, i) => (
-                        <h3 key={i}>{hab.name}</h3>
+                        <Habitlist key={i} name={hab.name} days={hab.days} deletehabit={deletehabit} index={hab.id} />
                     ))
                 }
             </Div>
