@@ -18,17 +18,26 @@ export const Div = styled.div`
     align-items: flex-start;
     margin-top: 100px;
     padding-bottom: 100px;
-    h3{
+    > h3{
         font-weight: 400;
         font-size: 23px;
         color: #126BA5;
-        margin: 0px 0px 17px 15px;
+        margin: 0px 0px 17px 16px;
     }
-    p{
+    > p{
         font-weight: 400;
         font-size: 18px;
-        margin: 0px 15px 0px 15px;
+        margin: 0px 15px 0px 16px;
         color: #666666;
+    }
+    .today{
+        font-weight: 400;
+        font-size: 18px;
+        margin-top: -10px;
+        color: #BABABA;
+    }
+    .green{
+        color: #8FC549;
     }
 `
 

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import UserContext from "../contexts/UserContext";
@@ -7,13 +7,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import styled from "styled-components";
 
 export default function Menu(){
-    const { userdata } = useContext(UserContext);
-    const [percentage, setPercentage] = useState(0);
-
-    if(userdata.todays !== undefined){
-        const done = userdata.todays.filter((hab) => (hab.done));
-        setPercentage(100 * done.length / userdata.todays.length);
-    }
+    const { userdata } = useContext(UserContext);   
 
     return(
         <Div>
@@ -23,7 +17,7 @@ export default function Menu(){
             <div>
                 <Link to={"/hoje"}>
                     <CircularProgressbar
-                        value={percentage}
+                        value={userdata.percentage ? userdata.percentage : 0}
                         text=""
                         background
                         backgroundPadding={6}

@@ -17,18 +17,20 @@ export default function Habits(){
     const { userdata } = useContext(UserContext);
 
     useEffect(() => {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${userdata.token}`
-            }
-        };
-        const promise = axios.get(
-            "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
-            config
-        );
-        promise.then((re) => (
-            setHablist([...re.data])
-        ));
+        if(userdata.token){
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${userdata.token}`
+                }
+            };
+            const promise = axios.get(
+                "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
+                config
+            );
+            promise.then((re) => (
+                setHablist([...re.data])
+            ));
+        }
     }, []);
 
     function deletehabit(index){
@@ -90,7 +92,10 @@ const Addhab = styled.div`
     align-items: center;
     margin-bottom: 30px;
     > h3{
-        margin-bottom: 0px;
+        font-weight: 400;
+        font-size: 23px;
+        color: #126BA5;
+        margin: 0px 0px 0px 16px;
     }
     > button{
         width: 40px;
