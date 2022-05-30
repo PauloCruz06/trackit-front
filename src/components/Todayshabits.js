@@ -11,11 +11,9 @@ import styled from "styled-components";
 import UserContext from "../contexts/UserContext";
 
 import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
 import 'dayjs/locale/pt-br';
 
 export default function Todayshabits(){
-    dayjs.extend(advancedFormat);
     dayjs.locale("pt-br");
     const [habits, setHabits] = useState([]);
     const [percentage, setPercentage] = useState(0);
