@@ -9,7 +9,7 @@ export default function Todayshabitslist({ id, name, done, current, highest, che
                 <h3>{name}</h3>
                 <p>
                     Sequência atual:
-                     <Green color={current >= highest ? "#8FC549" : "#666666"}>
+                     <Green color={done ? "#8FC549" : "#666666"}>
                         {current} {current === 1 ? "dia" : "dias"}
                     </Green>
                 </p>

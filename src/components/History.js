@@ -4,6 +4,7 @@ import axios from "axios";
 import Calendar from "react-calendar";
 import dayjs from "dayjs";
 
+import Dayhabilist from "./Dayhabilist";
 import Top from "./Top";
 import Menu from "./Menu";
 
@@ -14,9 +15,9 @@ import 'react-calendar/dist/Calendar.css';
 import styled from "styled-components";
 
 export default function History(){
-    const[habitdays, setHabitdays] = useState("");
+    const[habitdays, setHabitdays] = useState([]);
+    const[show, setShow] = useState("");
     const{ userdata } = useContext(UserContext)
-    const hab = [{data: "23/05/2022", done: true}, {data: "24/05/2022", done: false}, {data: "25/05/2022", done: true}, {data: "26/05/2022", done: true}]
 
     useEffect(() => {
         if(userdata.token){
@@ -49,6 +50,14 @@ export default function History(){
           }
         }
     }
+
+    function showlisthabits(clickday){
+        habitdays.map((hab) => {
+            if(hab.day === dayjs(clickday).format("DD/MM/YYYY")){
+                setShow(hab.habits);
+            }
+        });
+    }
     
     return(
         <Screen>
@@ -58,8 +67,17 @@ export default function History(){
                 <Calendarconteiner>
                     <Calendar
                         tileClassName={tileClassName}
+                        onClickDay={(clickday) => showlisthabits(clickday)}
                     />
                 </Calendarconteiner>
+                {show !== "" ? 
+                    show.map((hab, i) => (
+                        <Dayhabilist key={i} name={hab.name} done={hab.done} setShow={setShow} />
+                    ))
+                    :
+                    <p>Clique no dia para ver o hábitos</p>
+                }
+                {show !== "" ? <Close onClick={() => setShow("")}>Fechar</Close> : <></>}
             </Div>
             <Menu />
         </Screen>
@@ -90,4 +108,17 @@ const Calendarconteiner = styled.div`
         background-color: #E75766;
         border-radius: 50px;
     }
+`
+
+const Close = styled.button`
+    width: 64px;
+    height: 25px;
+    border-radius: 5px;
+    border: none;
+    margin: 6px 0px 0px 20px;
+    background-color: #52B6FF;
+    color: #FFFFFF;
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 `
