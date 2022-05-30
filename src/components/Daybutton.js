@@ -2,20 +2,18 @@ import { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
-export default function Daybutton({ day, loading, habitdays, id }){
+export default function Daybutton({ day, loading, habitdays, id, savecall }){
     const [color, setColor] = useState("#DBDBDB");
     const [backcolor, setBackcolor] = useState("#FFFFFF");
     const [changecolor, setChangecolor] = useState(false);
 
     useEffect(() => {
-        const userhabit = localStorage.getItem('habits');
-
-        if(userhabit !== null){
-            const data = JSON.parse(userhabit);
-            data.days.map((i) => {
+        if(savecall !== null){
+            savecall.days.map((i) => {
                 if(i === id){
                     return setChangecolor(true);
                 }
+                return 0;
             })
         }
     },[])

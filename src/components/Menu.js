@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import UserContext from "../contexts/UserContext";
@@ -69,6 +69,9 @@ const Div = styled.div`
         height: 91px;
         display: flex;
         position: relative;
+    }
+    a{
+        width: 86px;
     }
     .CircularProgressbar{
         width: 91px;

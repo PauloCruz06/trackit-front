@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Menu from "./Menu";
@@ -17,7 +18,9 @@ export default function Todayshabits(){
     dayjs.locale("pt-br");
     const [habits, setHabits] = useState([]);
     const [percentage, setPercentage] = useState(0);
+    const [loading, setLoading] = useState(false);
     const { userdata, setUserdata } = useContext(UserContext);
+    const navigate = useNavigate();
     let brdata = dayjs().format('dddd, DD/MM');
     
     brdata = brdata[0].toUpperCase() + brdata.substring(1);
@@ -36,9 +39,11 @@ export default function Todayshabits(){
             promise.then((re) => {
                 const done = re.data.filter((hab) => (hab.done));
                 setHabits(re.data);
-                setUserdata({...userdata, todays: re.data, percentage: 100*done.length/re.data.length});
-                setPercentage(100*done.length/re.data.length);
+                setUserdata({...userdata, todays: re.data, percentage: re.data.length !== 0 ? 100*done.length/re.data.length : 0});
+                setPercentage(re.data.length !== 0 ? 100*done.length/re.data.length : 0);
             });
+        }else{
+            navigate("/");
         }
     }, []);
 
@@ -63,6 +68,7 @@ export default function Todayshabits(){
                 setHabits(re.data);
                 setUserdata({...userdata, percentage: 100*done.length/re.data.length});
                 setPercentage(100*done.length/re.data.length);
+                setLoading(false);
             });
         });
     }
@@ -88,6 +94,7 @@ export default function Todayshabits(){
                 setHabits(re.data);
                 setUserdata({...userdata, percentage: 100*done.length/re.data.length});
                 setPercentage(100*done.length/re.data.length);
+                setLoading(false);
             });
         });
     }
@@ -117,6 +124,8 @@ export default function Todayshabits(){
                             highest={hab.highestSequence}
                             checkhab={checkhab}
                             erasehab={erasehab}
+                            loading={loading}
+                            setLoading={setLoading}
                         />
                     ))}
                 </Hablist>

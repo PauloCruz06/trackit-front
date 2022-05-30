@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Calendar from "react-calendar";
@@ -15,9 +16,10 @@ import 'react-calendar/dist/Calendar.css';
 import styled from "styled-components";
 
 export default function History(){
-    const[habitdays, setHabitdays] = useState([]);
-    const[show, setShow] = useState("");
-    const{ userdata } = useContext(UserContext)
+    const [habitdays, setHabitdays] = useState([]);
+    const [show, setShow] = useState("");
+    const { userdata } = useContext(UserContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(userdata.token){
@@ -33,6 +35,8 @@ export default function History(){
             promise.then((re) => {
                 setHabitdays(re.data);
             });
+        }else{
+            navigate("/");
         }
     },[])
 
@@ -75,7 +79,7 @@ export default function History(){
                         <Dayhabilist key={i} name={hab.name} done={hab.done} setShow={setShow} />
                     ))
                     :
-                    <p>Clique no dia para ver o hábitos</p>
+                    <Par>Clique no dia para ver os hábitos</Par>
                 }
                 {show !== "" ? <Close onClick={() => setShow("")}>Fechar</Close> : <></>}
             </Div>
@@ -121,4 +125,8 @@ const Close = styled.button`
     font-family: 'Lexend Deca', sans-serif;
     font-weight: 400;
     font-size: 14px;
+`
+
+const Par = styled.p`
+    padding-top: 12px;
 `

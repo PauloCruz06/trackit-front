@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Habitlist from "./Habitlist";
 import Menu from "./Menu";
@@ -14,7 +15,9 @@ import axios from "axios";
 export default function Habits(){
     const [habits, setHabits] = useState("none");
     const [hablist, setHablist] = useState(null);
+    const [savecall, setSavecall] = useState(null);
     const { userdata } = useContext(UserContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(userdata.token){
@@ -30,6 +33,8 @@ export default function Habits(){
             promise.then((re) => (
                 setHablist([...re.data])
             ));
+        }else{
+            navigate("/");
         }
     }, []);
 
@@ -66,8 +71,15 @@ export default function Habits(){
                         onClick={habits === "none" ? () => setHabits("new") : null}
                     > + </button>
                 </Addhab>
-                {habits === "new" ? <Newhabit setHabits={setHabits} hablist={hablist} setHablist={setHablist} /> : null}
-                {hablist === null ? 
+                {habits === "new" ?
+                <Newhabit
+                    setHabits={setHabits}
+                    hablist={hablist}
+                    setHablist={setHablist}
+                    savecall={savecall}
+                    setSavecall={setSavecall}
+                /> : null}
+                {hablist === null || hablist.length === 0 ? 
                     <p>
                         Você não tem nenhum hábito cadastrado ainda.
                         Adicione um hábito para começar a trackear!

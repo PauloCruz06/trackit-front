@@ -9,7 +9,7 @@ import { Buttons } from "./Stylehabits";
 import styled from "styled-components";
 import axios from "axios";
 
-export default function Newhabit({ setHabits, hablist, setHablist }){
+export default function Newhabit({ setHabits, hablist, setHablist, savecall, setSavecall }){
     const [name, setName] = useState("");
     const [days, setDays] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -18,13 +18,9 @@ export default function Newhabit({ setHabits, hablist, setHablist }){
     let habits = [];
 
     useEffect(() => {
-        const userhabit = localStorage.getItem('habits');
-
-        if(userhabit !== null){
-            const data = JSON.parse(userhabit);
-            setName(data.name);
-        }
-        
+        if(savecall !== null){
+            setName(savecall.name);
+        } 
         habits = weekdays.map((day, i) => ({days: i, color: "#DBDBDB"}));
         setDays(habits);
     },[]);
@@ -32,15 +28,14 @@ export default function Newhabit({ setHabits, hablist, setHablist }){
     function habitdays(color, index){
         habits = [ ...days ];
         habits[index] = {days: habits[index].days, color: color};
+        const dayindex = habits.filter((day) => (day.color === "#FFFFFF"));
+        const data = {name: name, days: dayindex.map((day) => (day.days))};
         setDays(habits);
+        setSavecall(data);
     }
 
     function calloff(e){
         e.preventDefault();
-        const dayindex = days.filter((day) => (day.color === "#FFFFFF"));
-        const data = {name: name, days: dayindex.map((day) => (day.days))};
-        const datastring = JSON.stringify(data);
-        localStorage.setItem('habits', datastring);
         setHabits("none");
     }
 
@@ -63,8 +58,8 @@ export default function Newhabit({ setHabits, hablist, setHablist }){
             config
         );
         promise.then((re) => {
-            localStorage.removeItem('habits');
             setHabits("none");
+            setSavecall(null);
             setHablist([...hablist, re.data]);
         });
         promise.catch(() => {
@@ -86,7 +81,7 @@ export default function Newhabit({ setHabits, hablist, setHablist }){
             />
             <Buttons>
                  {weekdays.map((day, index) => (
-                     <Daybutton key={index} id={index} loading={loading} day={day} habitdays={habitdays} />
+                     <Daybutton key={index} id={index} loading={loading} day={day} habitdays={habitdays} savecall={savecall} />
                  ))}
             </Buttons>
             <Submits className={loading ? "pale" : null}>

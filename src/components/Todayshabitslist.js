@@ -1,8 +1,19 @@
 import styled from "styled-components";
 
 import check from "./assets/images/Group.png";
+import { Loaderspinner } from "./Loaderspinner";
 
-export default function Todayshabitslist({ id, name, done, current, highest, checkhab, erasehab }){
+export default function Todayshabitslist({ id, name, done, current, highest, checkhab, erasehab, loading, setLoading }){
+    function sendRequest(id){
+        if(done){
+            erasehab(id);
+            setLoading(true);
+        }else{
+            checkhab(id);
+            setLoading(true);
+        }
+    }
+    
     return(
         <Today>
             <div className="div">
@@ -20,8 +31,8 @@ export default function Todayshabitslist({ id, name, done, current, highest, che
                     </Green>
                 </p>
             </div>
-            <Button backcolor={done ? "#8FC549" : "#EBEBEB"} onClick={done ? () => erasehab(id) : () => checkhab(id)}>
-                <img alt="check" src={check} />
+            <Button backcolor={done ? "#8FC549" : "#EBEBEB"} onClick={loading ? null : () => sendRequest(id)}>
+                {loading ? <Loaderspinner /> : <img alt="check" src={check} />}
             </Button>
         </Today>
     );
@@ -62,9 +73,12 @@ const Today = styled.div`
 `
 
 const Button = styled.button`
-    min-width: 69px;
+    width: 69px;
     height: 69px;
     margin-right: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: ${props => props.backcolor};
     border-radius: 5px;
     border: none;
