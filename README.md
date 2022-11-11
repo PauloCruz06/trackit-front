@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# <p align="center"> Projeto #10 - TrackIt </p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+    <img src="./src/components/assets/images/logo.png" />
+</p>
 
-## Available Scripts
+<p align="center">
+   <img src="https://img.shields.io/badge/author-PauloCruz06-4dae71?style=flat-square" />
+   <img src="https://img.shields.io/github/languages/count/PauloCruz06/projeto10-trackit?color=4dae71&style=flat-square" />
+</p>
 
-In the project directory, you can run:
+## :clipboard: Descrição
 
-### `npm start`
+O projeto TrackIt simula um aplicativo de hábitos onde o usuário poderá cadastrar tarefas diárias e acompanha-las determinando quais dias serão feitas e se elas foram completadas no dia atual ou em dias anteriores.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+***
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## :computer: Tecnologias
 
-### `npm test`
+- JavaScript
+- React, React Router Dom
+- Context API
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+***
 
-### `npm run build`
+## :rocket: Rotas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Rota `/`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- O usuário deve entrar com email e senha previamente cadastrados.
+- Caso não possua cadastro é possível clicar no link abaixo do botão 'entrar' que irá redireciona-lo para a tela de cadastro.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<div align='center'>
+    <img height="400" src="./src/components/assets/images/Phone8_4.png" />   
+</div>
 
-### `npm run eject`
+### Rota `/cadastro`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- O usuário irá cadastrar no aplicativo o email, senha, seu nome e foto do perfil.
+- Em caso de sucesso, será redirecionado para a tela de login (rota `/`).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<div align='center'>
+    <img height="400" src="./src/components/assets/images/Phone8_5.png" />   
+</div>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Rota `/habitos`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Na tela de hábitos, o usuário poderá cadastrar, ver e deletar hábitos além de escolher os dias da semana em que deverá fazer.
+- Caso o usuário não possua nenhum hábito, aparecerá uma mensagem na tela.
+- É possível cadastrar um novo hábito ao apertar no botão (+).
 
-## Learn More
+<div align='center'>
+    <img height="400" src="./src/components/assets/images/Phone8_8910.png" />   
+</div>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Rota `/hoje`
 
-### Code Splitting
+- Na tela 'Hoje' é possível ver apenas os hábitos do dia atual, sua sequência atual,  e o recorde de sequências.
+- Ao clicar em um hábito ele é marcado como comcluído naquele dia e a barra de progresso em baixo é preenchida.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<div align='center'>
+    <img height="400" src="./src/components/assets/images/Phone8_111213.png" />   
+</div>
 
-### Analyzing the Bundle Size
+### Rota `/historico`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- No histórico é possível consultar os dias em que o usuário completou seus hábitos.
+- Em verde são os dias que 100% dos hábitos foram completados, em vermelho, os dias que ficaram faltando algum hábito e em amarelo, o dia atual.
 
-### Making a Progressive Web App
+<div align='center'>
+    <img height="400" src="./src/components/assets/images/Phone8_16.png" />   
+</div>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+***
 
-### Advanced Configuration
+## 🏁 Rodando a aplicação
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Este projeto foi inicializado com o [Create React App](https://github.com/facebook/create-react-app), então certifique-se que voce tem a ultima versão estável do [Node.js](https://nodejs.org/en/download/) e [npm](https://www.npmjs.com/) rodando localmente.
 
-### Deployment
+Primeiro, faça o clone desse repositório na sua maquina:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+git clone https://github.com/luanalessa/projeto-backend.git
+```
 
-### `npm run build` fails to minify
+Depois, dentro da pasta, rode o seguinte comando para instalar as dependencias.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+npm install
+```
+
+Finalizado o processo, é só inicializar o servidor
+```
+npm start
+```
