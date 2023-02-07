@@ -1,4 +1,4 @@
-# <p align="center"> Projeto #10 - TrackIt </p>
+# <p align="center"> TrackIt Front-end </p>
 
 <p align="center">
     <img src="./src/components/assets/images/logo.png" />
